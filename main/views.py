@@ -8,23 +8,63 @@ import pandas as pd
 import math
 import os
 import datetime
+# from django.core import serializers
+# from .serializers import HospitalSerializer
+import json
 
 
 def index(request):
     context={}
+    # print(request.GET)
+    # print(request.GET['area'])
     return render(request,'main/index.html',context)
 
-def about(request):
-    context={}
+def read_city_list(request):
+    city_list = Hospital.objects.values('city').distinct()
+    # print(hospitals)
+    # 걍 장고 시리얼라이저 사용
+    # hospitals_json = serializers.serialize('json',hospitals)
+    # print(hospitals_json)
+
+    #장고 rest Framework에서 시리얼라이저 재정의해서 사용
+    # hospitals_json = HospitalSerializer(hospitals,many=True)
+    # print(hospitals_json)
+
+    #걍 장고 json.dumps
+    city_list_json = json.dumps(list(city_list))
+    # print(hospitals_json)
+    return HttpResponse(city_list_json,content_type="text/json-comment-filtered")
+
+def read_hospital_list(request,city):
+    hospital_list = Hospital.objects.values('id','hospital_name').filter(city=city)
+    print(hospital_list)
+    hospital_list_json =  json.dumps(list(hospital_list))
+    return HttpResponse(hospital_list_json,content_type="text/json-comment-filtered")
+
+def read_subjects_list(request,hospital_id):
+    subjects_list = Subjects.objects.values('id','subjects_name').filter(hospital_id=hospital_id)
+    subjects_list_json = json.dumps(list(subjects_list))
+    return HttpResponse(subjects_list_json,content_type="text/json-comment-filtered")
+
+def about(request,subjects_id):
+    print(subjects_id)
+    subject=Subjects.objects.filter(id=subjects_id)
+    print(subject)
+    context={'subject':subject}
+    # context={'id':subject['id']}
     return render(request,'main/about.html',context)
 
 def blog(request):
     context={}
     return render(request,'main/blog.html',context)
 
-def contact(request):
+def sign_up(request):
     context={}
-    return render(request,'main/contact.html',context)
+    return render(request,'main/sign_up.html',context)
+
+def login(request):
+    context={}
+    return render(request,'main/login.html',context)
 
 def listing(request):
     context={}
@@ -63,7 +103,7 @@ def xlsx(request):
             hospital=Hospital.objects.create(hospital_name=hospital_name,city=city,address =address,callnum=callnum,url= url,established_on=established_on,employees_cnt=employees_cnt)
         Subjects.objects.create(hospital=hospital,subjects_name=subjects_name,specialist_cnt=specialist_cnt)
 
-    print("reading xlsx is done")        
+    print("reading xlsx is done")
     return HttpResponse("xlsx read done")
 
 # Create your views here.
