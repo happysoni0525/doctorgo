@@ -8,27 +8,108 @@ import pandas as pd
 import math
 import os
 import datetime
+# from django.core import serializers
+# from .serializers import HospitalSerializer
+import json
 
 
 def index(request):
     context={}
+    # print(request.GET)
+    # print(request.GET['area'])
     return render(request,'main/index.html',context)
 
-def about(request):
-    context={}
-    return render(request,'main/about.html',context)
+def read_city_list(request):
+    city_list = Hospital.objects.values('city').distinct()
+    # print(hospitals)
+    # 걍 장고 시리얼라이저 사용
+    # hospitals_json = serializers.serialize('json',hospitals)
+    # print(hospitals_json)
+
+    #장고 rest Framework에서 시리얼라이저 재정의해서 사용
+    # hospitals_json = HospitalSerializer(hospitals,many=True)
+    # print(hospitals_json)
+
+    #걍 장고 json.dumps
+    city_list_json = json.dumps(list(city_list))
+    # print(hospitals_json)
+    return HttpResponse(city_list_json,content_type="text/json-comment-filtered")
+
+def read_hospital_list(request,city):
+    hospital_list = Hospital.objects.values('id','hospital_name').filter(city=city)
+    print(hospital_list)
+    hospital_list_json =  json.dumps(list(hospital_list))
+    return HttpResponse(hospital_list_json,content_type="text/json-comment-filtered")
+
+def read_subjects_list(request,hospital_id):
+    subjects_list = Subjects.objects.values('id','subjects_name').filter(hospital_id=hospital_id)
+    subjects_list_json = json.dumps(list(subjects_list))
+    return HttpResponse(subjects_list_json,content_type="text/json-comment-filtered")
+    # subjects_list_json ={
+    #     {'id' : 1,
+    #     'subject_name': 신경의학과},
+    #     {
+
+    #     },
+    #     {
+
+    #     }
+
+
+    # }
+    
+
+
+
+    # return HttpResponse() -> 데이터(json) 만 전달할때,
+    # return render() -> 데이터(.json) 랑 화면(.html)을 같이 엮어서 전달
+    # return render(subjects_list_json, a.html , )
+    # return redirect() -> 화면만 
+
+# def about(request,subjects_id):
+#     print(subjects_id)
+#     subject=Subjects.objects.filter(id=subjects_id)
+#     print(subject)
+#     context={'subject':subject}
+#     # context={'id':subject['id']}
+#     return render(request,'main/about.html',context)
 
 def blog(request):
     context={}
     return render(request,'main/blog.html',context)
 
-def contact(request):
+def sign_up(request):
     context={}
-    return render(request,'main/contact.html',context)
+    return render(request,'main/sign_up.html',context)
+
+def login(request):
+    context={}
+    return render(request,'main/login.html',context)
+
+def about(request,subjects_id):
+    print(subjects_id)
+    subject=Subjects.objects.filter(id=subjects_id)
+    print(subject)
+    context={'subject':subject}
+    return render(request,'main/about.html',context)
 
 def listing(request):
     context={}
     return render(request,'main/listing.html',context)
+
+# http://고사부.com/main/cities/<str:city>/hospitals' (http://127.0.0.1:8000/main/cities/서울/hospitals)
+def listing_hospital(request,city):
+    print(city)
+    hospitals=Hospital.objects.filter(city=city)  #만든변수=DB테이블명.objects.filter(DB칼럼명=def에서정의한변수)
+    print(hospitals)
+    context={ 'hospitals' :   hospitals   } #{key:value}에서 key값은 아무거나 해줘도 된다. -> 이 key는 html에서 사용한다.
+    return render(request,'main/listing_hospital.html',context)
+
+# http://고사부.com/main/cities/all/hospitals  (http://127.0.0.1:8000/main/cities/all/hospitals)
+def listing_all(request):
+    hospitals=Hospital.objects.all()
+    context={'hospitals' : hospitals }
+    return render(request,'main/listing_all.html',context)    
 
 def main(request):
     context={}
@@ -63,7 +144,7 @@ def xlsx(request):
             hospital=Hospital.objects.create(hospital_name=hospital_name,city=city,address =address,callnum=callnum,url= url,established_on=established_on,employees_cnt=employees_cnt)
         Subjects.objects.create(hospital=hospital,subjects_name=subjects_name,specialist_cnt=specialist_cnt)
 
-    print("reading xlsx is done")        
+    print("reading xlsx is done")
     return HttpResponse("xlsx read done")
 
 # Create your views here.
