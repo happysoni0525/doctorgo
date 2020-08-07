@@ -643,21 +643,30 @@
         let hospital_id = $("#hospital option:selected").val()
         let subejcts_id = $("#subjects option:selected").val()
         if (city_name){
-            console.log(city_name)
+                console.log(city_name)
+                let target_url="listing/cities/"+city_name+"/hospitals"
+        $('#go_form').attr("action",target_url)
+        $('#go_form').attr("method","get")
+        $('#go_form').submit()
+        
         }
         else if(hospital_id){
             console.log(hospital_id)
+            let target_url="listing/"+subejcts_id
+        $('#go_form').attr("action",target_url)
+        $('#go_form').attr("method","get")
+        $('#go_form').submit()
         }
         else if(subejcts_id){
             console.log(subejcts_id)
+            let target_url="about/"+subejcts_id
+        $('#go_form').attr("action",target_url)
+        $('#go_form').attr("method","get")
+        $('#go_form').submit()
         }
         console.log(city_name)
         console.log(hospital_id)
         console.log(subejcts_id)
-        let target_url="about/"+subejcts_id
-        $('#go_form').attr("action",target_url)
-        $('#go_form').attr("method","get")
-        $('#go_form').submit()
     }
 
 </script>

@@ -110,14 +110,18 @@ def about(request,subjects_id):
     return render(request,'main/about.html',context)
 
 def listing(request):
+    print("adfdsfsdfasdfsdaf")
     hospitals=Hospital.objects.all
     context={'hospitals' : hospitals }
     return render(request,'main/listing.html',context) 
 
 # http://고사부.com/main/cities/<str:city>/hospitals' (http://127.0.0.1:8000/main/cities/서울/hospitals)
 def listing_hospital(request,city):
+    if city == "전체지역":
+        hospitals=Hospital.objects.all
+        context={'hospitals' : hospitals }
+        return render(request,"main/listing.html",context)
     print(city)
-    print("asdfdsfsdfasdf")
     hospitals=Hospital.objects.filter(city=city)  #만든변수=DB테이블명.objects.filter(DB칼럼명=def에서정의한변수)
     # Subjects=Subjects.objects.all
     print(hospitals)
@@ -147,18 +151,19 @@ def contact(request):
     return render(request,'main/contact.html')
 
 def review(request,subjects_id):
-    subjects=Subjects.objects.filter(id=subjects_id)
-    print(subjects)
-    hospital_id=Subjects.objects.values('hospital_id').filter(id=subjects_id)
-    print(hospital_id)
+    if request.method == "GET":
+        subjects=Subjects.objects.filter(id=subjects_id)
+        print(subjects)
+        hospital_id=Subjects.objects.values('hospital_id').filter(id=subjects_id)
+        print(hospital_id)
 
-    hospital=Hospital.objects.filter(id=13)
-    print(hospital)
-    context={'subjects': subjects,
-            'hospital' : hospital
-    }
-    print(context)
-    return render(request,'main/review.html' ,context)
+        hospital=Hospital.objects.filter(id=hospital_id)
+        print(hospital)
+        context={'subjects': subjects,
+                'hospital' : hospital
+        }
+        print(context)
+        return render(request,'main/review.html' ,context)
 
 def add_review(request,subjects_id):
     
