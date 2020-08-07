@@ -51,7 +51,7 @@ name : {{hospital.hospital_name}} | location : {{hospital.url}}
               <div class="listing-img h-100 mr-4">
               <!-- <img src='{#% static "images/car_6.jpg" %}' alt="Image" class="img-fluid"> -->
               {% if hospital.image %} 
-                <img src='{{hospital.image.url}}' alt="Image" class="img-fluid">
+                <img src='{{hospital.image.url}}' alt="Image" style = 'width: 300px; height: 250px'>
               {% else%}
                 <div>사진없음</div>
               {% endif %}
@@ -77,7 +77,7 @@ name : {{hospital.hospital_name}} | location : {{hospital.url}}
                   </div>
                   <div>
                     <p>{{hospital.url}}</p>
-                    <p><a href="#" class="btn btn-primary btn-sm">GO</a></p>
+                   <!-- <p><a href="#" class="btn btn-primary btn-sm">GO</a></p> -->
                   </div>
                 </div>
               </div>
