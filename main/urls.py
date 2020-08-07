@@ -24,7 +24,7 @@ urlpatterns = [
     path('<str:city>/hospital_list',views.read_hospital_list,name='hospital_list'),
     path('<int:hospital_id>/subjects_list',views.read_subjects_list,name='read_subjects_list'),
     path('about/<int:subjects_id>',views.about, name='about'),
-    path('cities/<str:city>/hospitals', views.listing_hospital, name='listing_hospital'),
+    path('listing/cities/<str:city>/hospitals', views.listing_hospital, name='listing_hospital'),
     path('cities/all/hospitals', views.listing_all, name='listing_all'),
     
 
