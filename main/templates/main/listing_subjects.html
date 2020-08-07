@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content%}
+
+<div class="hero inner-page" style="background-image: url('../../../static/images/doctor1920.jpg');">
+
+  <div class="container">
+    <div class="row align-items-end ">
+      <div class="col-lg-5">
+
+        <div class="intro">
+          <h1><strong>Subjects Listing</strong></h1>
+          <div class="custom-breadcrumbs"><a href='{% static "index.html" %}'>Home</a> <span class="mx-2">/</span>
+            <strong>Subjects</strong></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--진료과목 리스트 타이틀-->
+<div class="site-section bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7">
+        <h2 class="section-heading"><strong>진료과목 리스트</strong></h2>
+        <p class="mb-5">전국 상급종합병원 진료과목 리스트 보여줄께!!!</p>
+      </div>
+    </div>
+
+
+    <!-- 병원의 진료과목 전체 리스트 보여주기
+    <div class="row">
+
+      {% for hospital in hospitals %}
+
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="listing d-block  align-items-stretch">
+          <div class="listing-img h-100 mr-4">
+          
+            {% if hospital.image %}
+            <img src='{{hospital.image.url}}' alt="Image" class="img-fluid">
+            {% else%}
+            <div>사진없음</div>
+            {% endif %}
+          </div>
+          <div class="listing-contents h-100">
+            <h3> {{hospital.hospital_name}} </h3>
+            <div class="rent-price">
+              <strong>{{hospital.city}}</strong><span class="mx-1"></span>{{hospital.callnum}}
+            </div>
+            <div class="d-block d-md-flex mb-3 border-bottom pb-3">
+              <div class="listing-feature pr-4">
+                <span class="caption">진료과목</span>
+                <span class="number">{{hospital.count_subject}}</span>
+              </div>
+              <div class="listing-feature pr-4">
+                <span class="caption">전문의</span>
+                <span class="number">{{hospital.count_majordoctor}}</span>
+              </div>
+              <div class="listing-feature pr-4">
+                <span class="caption">레지던트</span>
+                <span class="number">{{hospital.count_resident}}</span>
+              </div>
+            </div>
+            <div>
+              <p>{{hospital.url}}</p>
+              <p><a href="#" class="btn btn-primary btn-sm">GO</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {% endfor %} -->
+
+
+      <!--아래 페이지 버튼 5개-->
+    </div>
+    <div class="row">
+      <div class="col-5">
+        <div class="custom-pagination">
+          <a href="#">1</a>
+          <a href="#">2</a>
+          <!-- <span>2</span> -->
+          <a href="#">3</a>
+          <a href="#">4</a>
+          <a href="#">5</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="site-section bg-primary py-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-7 mb-4 mb-md-0">
+        <h2 class="mb-0 text-white">What are you waiting for?</h2>
+        <p class="mb-0 opa-7">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, laboriosam.</p>
+      </div>
+      <div class="col-lg-5 text-md-right">
+        <a href="#" class="btn btn-primary btn-white">Rent a car now</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
