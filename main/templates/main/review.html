@@ -30,17 +30,17 @@
   </div>
     <div class="row">
       <div class="col-lg-8 mb-5" style="margin:0 auto">
-        <form action="#" method="post">
+        <form action="cities/{{hospital.0.city}}/hospitals/{{hospital.0.id}}/subjects/{{subjects.0.id}}" method="post">
 <div class="form-group row">
 
             <div class="col-md-6 mb-4 mb-lg-0" style="margin:0 auto">
                 <div style="margin:0 auto; text-align: center">친절함</div>
-              <div style="margin:0 auto; text-align: center">
-              <input type="radio" name="rbAgree" class="star">1점&nbsp;
-              <input type="radio" name="rbAgree">2점&nbsp;
-              <input type="radio" name="rbAgree">3점&nbsp;
-              <input type="radio" name="rbAgree">4점&nbsp;
-              <input type="radio" name="rbAgree">5점&nbsp;
+              <div style="margin:0 auto; text-align: center" id="kindness">
+              <label><input type="radio" name="kindness">1점&nbsp;</label>
+              <label><input type="radio" name="kindness">2점&nbsp;</label>
+              <label><input type="radio" name="kindness">3점&nbsp;</label>
+              <label><input type="radio" name="kindness">4점&nbsp;</label>
+              <label><input type="radio" name="kindness">5점&nbsp;</label>
               </div>
 
   </div>
@@ -50,12 +50,12 @@
 
             <div class="col-md-6 mb-4 mb-lg-0" style="margin:0 auto">
                 <div style="margin:0 auto; text-align: center">신속도</div>
-              <div style="margin:0 auto; text-align: center">
-              <input type="radio" name="rbAgree">1점&nbsp;
-              <input type="radio" name="rbAgree">2점&nbsp;
-              <input type="radio" name="rbAgree">3점&nbsp;
-              <input type="radio" name="rbAgree">4점&nbsp;
-              <input type="radio" name="rbAgree">5점&nbsp;
+              <div style="margin:0 auto; text-align: center" id="speed">
+              <input type="radio" name="speed">1점&nbsp;
+              <input type="radio" name="speed">2점&nbsp;
+              <input type="radio" name="speed">3점&nbsp;
+              <input type="radio" name="speed">4점&nbsp;
+              <input type="radio" name="speed">5점&nbsp;
               </div>
   </div>
 </div>
@@ -64,12 +64,12 @@
 
             <div class="col-md-6 mb-4 mb-lg-0" style="margin:0 auto">
                 <div style="margin:0 auto; text-align: center">책임감</div>
-              <div style="margin:0 auto; text-align: center">
-              <input type="radio" name="rbAgree">1점&nbsp;
-              <input type="radio" name="rbAgree">2점&nbsp;
-              <input type="radio" name="rbAgree">3점&nbsp;
-              <input type="radio" name="rbAgree">4점&nbsp;
-              <input type="radio" name="rbAgree">5점&nbsp;
+              <div style="margin:0 auto; text-align: center" id="responsibility">
+              <input type="radio" name="responsibility">1점&nbsp;
+              <input type="radio" name="responsibility">2점&nbsp;
+              <input type="radio" name="responsibility">3점&nbsp;
+              <input type="radio" name="responsibility">4점&nbsp;
+              <input type="radio" name="responsibility">5점&nbsp;
               </div>
   </div>
 </div>
@@ -81,12 +81,12 @@
 
             <div class="col-md-6 mb-4 mb-lg-0" style="margin:0 auto">
                 <div style="margin:0 auto; text-align: center">전문성</div>
-              <div style="margin:0 auto; text-align: center">
-              <input type="radio" name="rbAgree">1점&nbsp;
-              <input type="radio" name="rbAgree">2점&nbsp;
-              <input type="radio" name="rbAgree">3점&nbsp;
-              <input type="radio" name="rbAgree">4점&nbsp;
-              <input type="radio" name="rbAgree">5점&nbsp;
+              <div style="margin:0 auto; text-align: center" id="professionality">
+              <input type="radio" name="professionality">1점&nbsp;
+              <input type="radio" name="professionality">2점&nbsp;
+              <input type="radio" name="professionality">3점&nbsp;
+              <input type="radio" name="professionality">4점&nbsp;
+              <input type="radio" name="professionality">5점&nbsp;
               </div>
   </div>
 </div>

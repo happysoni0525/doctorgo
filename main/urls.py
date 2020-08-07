@@ -18,6 +18,7 @@ urlpatterns = [
     path('cities/<str:city>/hospitals/<int:hospital_id>/subjects',views.read_subjects_list,name='read_subjects_list'),
     path('about/<int:subjects_id>',views.about,name='about'),
     path('review/<int:subjects_id>',views.review,name='review'),
+    path('review/<int:subjects_id>',views.add_review, name="add_review"),
     
     path('city_list/',views.read_city_list,name='city_list'),  #index.html
     path('<str:city>/hospital_list',views.read_hospital_list,name='hospital_list'),
@@ -25,6 +26,7 @@ urlpatterns = [
     path('about/<int:subjects_id>',views.about, name='about'),
     path('cities/<str:city>/hospitals', views.listing_hospital, name='listing_hospital'),
     path('cities/all/hospitals', views.listing_all, name='listing_all'),
+    
 
 
 ]

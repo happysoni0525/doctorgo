@@ -160,8 +160,9 @@ def review(request,subjects_id):
     return render(request,'main/review.html' ,context)
 
 def add_review(request,subjects_id):
+    
     context={}
-    return render(request,'main/review.html')
+    return render(request,'main/index.html')
 
 def xlsx(request):
     path=os.path.abspath(os.path.dirname(__file__))+'\\'
