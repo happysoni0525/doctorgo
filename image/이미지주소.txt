@@ -1,3 +1,17 @@
+url('../../../static/images/{{hospital.image}}.jpg');
+'../../../static/images/doctor1920.jpg'
+
 
 https://www.kbsmc.co.kr/imgs/about/1_1_text_01.png
 https://www.kuh.ac.kr/asset/img/gallery/img_view_gallery01.jpg
+
+송이@DESKTOP-IKELL1H MINGW64 /c/doctorGo (master)
+$ git commit -m "송사부수정0807"
+[master 0a6abbb] ?≪궗遺?섏젙0807
+ 16 files changed, 158 insertions(+), 352 deletions(-)
+ create mode 100644 heeham.txt
+ create mode 100644 "image/1.\352\260\200\355\206\250\353\246\255\353\214\200\355\225\231\352\265\220\354\235\270\354\262\234\354\204\261\353\252\250\353\263\221\354\233\220.png"
+ create mode 100644 "image/2.\352\260\225\353\266\201\354\202\274\354\204\261\353\263\221\354\233\220.png"
+ create mode 100644 "image/3.\352\261\264\352\265\255\353\214\200\355\225\231\352\265\220\353\263\221\354\233\220.jpg"
+ create mode 100644 "image/\354\235\264\353\257\270\354\247\200\354\243\274\354\206\214.txt"
+ rewrite main/templates/main/listing.html (95%)

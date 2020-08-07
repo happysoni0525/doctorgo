@@ -49,7 +49,12 @@ name : {{hospital.hospital_name}} | location : {{hospital.url}}
           <div class="col-md-6 col-lg-4 mb-4">
             <div class="listing d-block  align-items-stretch">
               <div class="listing-img h-100 mr-4">
-                <img src='{% static "images/car_6.jpg" %}' alt="Image" class="img-fluid">
+              <!-- <img src='{#% static "images/car_6.jpg" %}' alt="Image" class="img-fluid"> -->
+              {% if hospital.image %} 
+                <img src='{{hospital.image.url}}' alt="Image" class="img-fluid">
+              {% else%}
+                <div>사진없음</div>
+              {% endif %}
               </div>
                 <div class="listing-contents h-100">
                   <h3>  {{hospital.hospital_name}} </h3>
@@ -86,8 +91,9 @@ name : {{hospital.hospital_name}} | location : {{hospital.url}}
     <div class="row">
       <div class="col-5">
         <div class="custom-pagination">
-          <a href="#">1</a> <!-- href="#' 이면 맨위로 넘어감-->
-          <span>2</span>
+          <a href="#">1</a> 
+          <a href="#">2</a> 
+          <!--<span>2</span> -->
           <a href="#">3</a>
           <a href="#">4</a>
           <a href="#">5</a>
@@ -95,7 +101,7 @@ name : {{hospital.hospital_name}} | location : {{hospital.url}}
       </div>
     </div>
   </div>
-</div>
+</div> 
 
 <!--마지막 파란색 마무리글-->
 <div class="site-section bg-primary py-5">
