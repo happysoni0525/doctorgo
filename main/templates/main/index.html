@@ -24,7 +24,7 @@
                     <div class="row align-items-center">
 
                         <div class="mb-3 mb-md-0 col-md-3">
-                            <select name="" id="location" class="custom-select form-control">
+                            <select name="" id="city" class="custom-select form-control">
                                 <option value="">지역</option>
                                 <!-- <a href='/main/?area=seoul'><option value="">서울</option></a> -->
                             </select>
@@ -520,12 +520,13 @@
     //처음 페이지 로드시 ajax request get 도시명 
     $.ajax({
         type: "GET",
-        url: 'city_list',
+        url: 'cities',
         data: {},
         success: function (response) {
             console.log(response)
+            add_city('전체지역');
             for (let i = 0; i < response.length; i++) {
-                add_location(i, response[i]['city']);
+                add_city(response[i]['city']);
             }
         },
         error: function (error) {
@@ -533,19 +534,20 @@
         }
     })
 
-    function add_location(i, location) {
+    function add_city(city) {
         // let temp_html = '<option val=' + '"' + i + '"' + '>' + location + '</option>';
-        let temp_html = '<option>' + location + '</option>';
+        let temp_html = '<option>' + city + '</option>';
         console.log(temp_html)
-        $('#location').append(temp_html);
+        $('#city').append(temp_html);
     }
 
 
 
     //도시명 선택시 request get 병원명
-    $("select[id=location]").change(function () {
+    $("select[id=city]").change(function () {
         city = $(this).val();
         console.log(city); //value값 가져오기
+
         // console.log($("select[id=location] option:selected").text()); //text값 가져오기
         get_hospital_list(city)
         $('#subjects').html('')
@@ -560,7 +562,7 @@
             $('#hospital').append('<option>지역을 먼저 선택하세요.</option>');
             return console.log("Not Selected")
         }
-        let target_url = city + '/hospital_list'
+        let target_url = 'cities/'+ city + '/hospitals'
         $.ajax({
             type: "GET",
             url: target_url,
@@ -568,6 +570,8 @@
             success: function (response) {
                 console.log(response)
                 $('#hospital').html('')
+                $('#hospital').append("'<option>병원명</option>");
+                add_hospital('all','전체병원');
                 for (let i = 0; i < response.length; i++) {
                     add_hospital(response[i]['id'], response[i]['hospital_name']);
                 }
@@ -582,10 +586,8 @@
         let temp_html = '<option value='  + hospital_id + '>' + hospital_name + '</option>';
         // let temp_html = '<option>' + hospital + '</option>';
         console.log(temp_html)
-        
         $('#hospital').append(temp_html);
     }
-
 
 
     //병원명 선택시 request get 진료과목
@@ -594,19 +596,21 @@
         // hospital_name = $(this).val();
         // console.log(hospital_name); //value값 가져오기
         // console.log($("select[id=hospital] option:selected").val()); //text값 가져오기
+        let city_name=$("#city option:selected").text()
+        console.log(city)
         let hospital_id=$("#hospital option:selected").val()
         console.log(hospital_id)
-        get_subjects_list(hospital_id)
+        get_subjects_list(city_name, hospital_id)
     });
 
-    function get_subjects_list(hospital_id) {
-        if (hospital_id == "") {
+    function get_subjects_list(city_name, hospital_id) {
+        if ((hospital_id == "") || (hospital_id == "all")) {
             $('#subjects').html('')
             $('#subjects').append('<option>진료과목</option>');
             $('#subjects').append('<option>병원을 먼저 선택하세요.</option>');
-            return console.log("Not Selected")
+            return 0
         }
-        let target_url = hospital_id + '/subjects_list'
+        let target_url = 'cities/' + city_name+ '/hospitals/' + hospital_id + '/subjects'
         $.ajax({
             type: "GET",
             url: target_url,
@@ -614,6 +618,8 @@
             success: function (response) {
                 console.log(response)
                 $('#subjects').html('')
+                $('#subjects').append("<option>진료과목</option>");
+                add_subjects('all','전체진료과목');
                 for (let i = 0; i < response.length; i++) {
                     add_subjects(response[i]['id'], response[i]['subjects_name']);
                 }
@@ -633,7 +639,11 @@
 
 // request get main/about/진료과목코드
     function click_go(){
-        let subejcts_id=$("#subjects option:selected").val()
+        let city_name = $("#city option:selected").val()
+        let hospital_id = $("#hospital option:selected").val()
+        let subejcts_id = $("#subjects option:selected").val()
+        console.log(city_name)
+        console.log(hospital_id)
         console.log(subejcts_id)
         let target_url="about/"+subejcts_id
         $('#go_form').attr("action",target_url)
