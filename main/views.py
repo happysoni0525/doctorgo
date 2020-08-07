@@ -36,12 +36,19 @@ def read_city_list(request):
     return HttpResponse(city_list_json,content_type="text/json-comment-filtered")
 
 def read_hospital_list(request,city):
+    if city == '전체지역':
+        hospital_list = Hospital.objects.values('id','hospital_name')
+        print(hospital_list)
+        hospital_list_json =  json.dumps(list(hospital_list))
+        return HttpResponse(hospital_list_json,content_type="text/json-comment-filtered")
+
     hospital_list = Hospital.objects.values('id','hospital_name').filter(city=city)
     print(hospital_list)
     hospital_list_json =  json.dumps(list(hospital_list))
     return HttpResponse(hospital_list_json,content_type="text/json-comment-filtered")
 
-def read_subjects_list(request,hospital_id):
+def read_subjects_list(request,city,hospital_id):
+    #hospital_id가 모든 테이블에서 유일하기 때문에 굳이 filter에 city를 안넣어도 된다.
     subjects_list = Subjects.objects.values('id','subjects_name').filter(hospital_id=hospital_id)
     subjects_list_json = json.dumps(list(subjects_list))
     return HttpResponse(subjects_list_json,content_type="text/json-comment-filtered")
@@ -51,20 +58,19 @@ def about(request,subjects_id):
     subject=Subjects.objects.filter(id=subjects_id)
     print(subject)
     context={'subject':subject}
-    # context={'id':subject['id']}
     return render(request,'main/about.html',context)
 
 def blog(request):
     context={}
     return render(request,'main/blog.html',context)
 
-def sign_up(request):
-    context={}
-    return render(request,'main/sign_up.html',context)
+# def sign_up(request):
+#     context={}
+#     return render(request,'main/sign_up.html',context)
 
-def login(request):
-    context={}
-    return render(request,'main/login.html',context)
+# def login(request):
+#     context={}
+#     return render(request,'main/login.html',context)
 
 def listing(request):
     context={}
@@ -81,6 +87,10 @@ def single(request):
 def testimonials(request):
     context={}
     return render(request,'main/testimonials.html',context)
+
+def contact(request):
+    context={}
+    return render(request,'main/contact.html')
 
 def xlsx(request):
     path=os.path.abspath(os.path.dirname(__file__))+'\\'

@@ -10,10 +10,12 @@ urlpatterns = [
     path('main/',views.main,name='main'),
     path('single/',views.single,name='single'),
     path('testimonials/',views.testimonials,name='testimonials'),
+    path('contact/',views.contact,name='contact'),
     path('xlsx/',views.xlsx, name='xlsx'),
 
-    path('city_list/',views.read_city_list,name='city_list'),
-    path('<str:city>/hospital_list',views.read_hospital_list,name='hospital_list'),
-    path('<int:hospital_id>/subjects_list',views.read_subjects_list,name='read_subjects_list'),
+    path('cities',views.read_city_list,name='read_city_list'),
+    path('cities/<str:city>/hospitals',views.read_hospital_list,name='read_hospital_list'),
+    path('cities/<str:city>/hospitals/<int:hospital_id>/subjects',views.read_subjects_list,name='read_subjects_list'),
     path('about/<int:subjects_id>',views.about,name='about'),
+    
 ]

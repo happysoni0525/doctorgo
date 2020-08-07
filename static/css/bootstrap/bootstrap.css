@@ -8131,3 +8131,17 @@ a.text-dark:hover, a.text-dark:focus {
   .table .thead-dark th {
     color: inherit;
     border-color: #dee2e6; } }
+
+  .fieldlist input[type="radio"] {
+      float: right;
+      -webkit-appearance: none;
+      border: none;
+      width: 25px;
+      height: 25px;
+      background: url(images/radio.png) left center no-repeat;    
+      background-size: 20px; 
+  }
+  .fieldlist input[type="radio"]:checked {
+      background: url(images/radio_checked.png) left center no-repeat;
+  }
+
