@@ -102,6 +102,7 @@ def listing(request):
 def listing_hospital(request,city):
     print(city)
     hospitals=Hospital.objects.filter(city=city)  #만든변수=DB테이블명.objects.filter(DB칼럼명=def에서정의한변수)
+    # Subjects=Subjects.objects.all
     print(hospitals)
     context={ 'hospitals' :   hospitals  } #{key:value}에서 key값은 아무거나 해줘도 된다. -> 이 key는 html에서 사용한다.
     return render(request,'main/listing_hospital.html',context)

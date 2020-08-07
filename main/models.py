@@ -13,6 +13,7 @@ class Hospital(models.Model):
     count_majordoctor = models.IntegerField()
     count_resident = models.IntegerField()
     count_intern = models.IntegerField()
+    image = models.ImageField(blank=True)
     def __str__(self):
         return f'병원명 : {self.hospital_name} / 위치 : {self.city} / 설립일 : {self.established_on}'
 
