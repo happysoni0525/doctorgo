@@ -13,20 +13,20 @@ urlpatterns = [
     path('contact/',views.contact,name='contact'),
     path('xlsx/',views.xlsx, name='xlsx'),
 
-<<<<<<< HEAD
     path('cities',views.read_city_list,name='read_city_list'),
     path('cities/<str:city>/hospitals',views.read_hospital_list,name='read_hospital_list'),
     path('cities/<str:city>/hospitals/<int:hospital_id>/subjects',views.read_subjects_list,name='read_subjects_list'),
     path('about/<int:subjects_id>',views.about,name='about'),
+    path('review/<int:subjects_id>',views.review,name='review'),
     
-=======
     path('city_list/',views.read_city_list,name='city_list'),  #index.html
     path('<str:city>/hospital_list',views.read_hospital_list,name='hospital_list'),
     path('<int:hospital_id>/subjects_list',views.read_subjects_list,name='read_subjects_list'),
     path('about/<int:subjects_id>',views.about, name='about'),
     path('cities/<str:city>/hospitals', views.listing_hospital, name='listing_hospital'),
     path('cities/all/hospitals', views.listing_all, name='listing_all'),
->>>>>>> 0a6abbb3947813bd7d7763416f576c03e00e9851
+
+
 ]
 # http://127.0.0.1:8000/main/country/
 # http://127.0.0.1:8000/main/all/

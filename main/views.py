@@ -67,14 +67,14 @@ def read_subjects_list(request,city,hospital_id):
     
 
 
-<<<<<<< HEAD
+
 def about(request,subjects_id):
     print(subjects_id)
     subject=Subjects.objects.filter(id=subjects_id)
     print(subject)
     context={'subject':subject}
     return render(request,'main/about.html',context)
-=======
+
 
     # return HttpResponse() -> 데이터(json) 만 전달할때,
     # return render() -> 데이터(.json) 랑 화면(.html)을 같이 엮어서 전달
@@ -88,7 +88,7 @@ def about(request,subjects_id):
 #     context={'subject':subject}
 #     # context={'id':subject['id']}
 #     return render(request,'main/about.html',context)
->>>>>>> 0a6abbb3947813bd7d7763416f576c03e00e9851
+
 
 def blog(request):
     context={}
@@ -143,6 +143,24 @@ def testimonials(request):
 def contact(request):
     context={}
     return render(request,'main/contact.html')
+
+def review(request,subjects_id):
+    subjects=Subjects.objects.filter(id=subjects_id)
+    print(subjects)
+    hospital_id=Subjects.objects.values('hospital_id').filter(id=subjects_id)
+    print(hospital_id)
+
+    hospital=Hospital.objects.filter(id=13)
+    print(hospital)
+    context={'subjects': subjects,
+            'hospital' : hospital
+    }
+    print(context)
+    return render(request,'main/review.html' ,context)
+
+def add_review(request,subjects_id):
+    context={}
+    return render(request,'main/review.html')
 
 def xlsx(request):
     path=os.path.abspath(os.path.dirname(__file__))+'\\'
