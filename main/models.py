@@ -9,6 +9,10 @@ class Hospital(models.Model):
     url = models.CharField(max_length=50)
     established_on= models.DateField()
     employees_cnt= models.IntegerField()
+    count_subject = models.IntegerField()
+    count_majordoctor = models.IntegerField()
+    count_resident = models.IntegerField()
+    count_intern = models.IntegerField()
     def __str__(self):
         return f'병원명 : {self.hospital_name} / 위치 : {self.city} / 설립일 : {self.established_on}'
 

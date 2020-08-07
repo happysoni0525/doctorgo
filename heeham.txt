@@ -1,0 +1,19 @@
+view.py
+
+
+    # filter1 = request.GET['filter1']
+
+    # hospitals=Hospital.objects.filter(filter1=filter1)
+
+    # if 'filter2' in request
+================================
+def listing(request):
+
+    # filter1 = request.GET['filter1']
+
+    # hospitals=Hospital.objects.filter(filter1=filter1)
+
+    # if 'filter2' in request
+
+    context={'hospitals' : hospitals }
+    return render(request,'main/listing.html',context) 
